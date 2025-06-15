@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -11,7 +9,7 @@ var versionCmd = &cobra.Command{
 	Short: "Displays the application version",
 	Long:  `This command displays the current version of the gopipe application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("GoPipe version: %s\nCommit: %s\nDate: %s\n", tag, commit, date)
+		cmd.Printf("GoPipe version: %s\nCommit: %s\nDate: %s\n", tag, commit, date)
 	},
 }
 
