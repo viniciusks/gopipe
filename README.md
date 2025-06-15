@@ -1,5 +1,9 @@
 # GoPipe पाइप
 
+<p align="center">
+    <img src="./assets/img/gopipe-logo.png" alt="GoPipe Logo" width="200"/>
+</p>
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/viniciusks/gopipe)](https://golang.org) <!-- Substitua 'viniciusks/gopipe' pelo seu usuário/repo -->
 [![Build Status](https://img.shields.io/github/actions/workflow/status/viniciusks/gopipe/go.yml?branch=main)](https://github.com/viniciusks/gopipe/actions) <!-- Substitua 'viniciusks/gopipe' e ajuste o nome do workflow se necessário -->
