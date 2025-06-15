@@ -8,20 +8,20 @@ import (
 
 var helloCmd = &cobra.Command{
 	Use:   "hello",
-	Short: "Exibe uma mensagem de saudação",
-	Long:  `Este comando exibe uma mensagem de saudação personalizada.`,
+	Short: "Displays a greeting message",
+	Long:  `This command displays a personalized greeting message.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		name, _ := cmd.Flags().GetString("name")
 		if name == "" {
-			name = "Mundo"
+			name = "World"
 		}
-		fmt.Printf("Olá, %s!\n", name)
+		fmt.Printf("Hello, %s!\n", name)
 	},
 }
 
 func init() {
 	// Adiciona a flag "name" ao comando hello
-	helloCmd.Flags().StringP("name", "n", "", "Nome da pessoa a ser saudada")
+	helloCmd.Flags().StringP("name", "n", "", "Name of the person to greet")
 	// Registra o comando hello no rootCmd
 	rootCmd.AddCommand(helloCmd)
 }

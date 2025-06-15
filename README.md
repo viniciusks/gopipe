@@ -36,7 +36,7 @@ No mundo DevOps e de Engenharia de Plataforma, a automação de processos de Int
 ```bash
 git clone https://github.com/viniciusks/gopipe.git # Substitua pelo seu usuário/repo
 cd gopipe
-go build .
+make build
 # Opcionalmente, instale globalmente (adicione GOPATH/bin ao seu PATH):
 # go install .
 ```

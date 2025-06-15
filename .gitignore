@@ -30,3 +30,6 @@ go.work.sum
 # Editor/IDE
 .idea/
 .vscode/
+
+# Arquivo compilado do Go
+gopipe

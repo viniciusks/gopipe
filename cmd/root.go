@@ -7,6 +7,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+    tag    = "dev"
+    commit = "none"
+    date   = "unknown"
+)
+
 var rootCmd = &cobra.Command{
 	Use:   "gopipe",
 	Short: "gopipe is a CLI tool for something",
@@ -16,9 +22,14 @@ var rootCmd = &cobra.Command{
 	},
 }
 
+func SetVersionVars(t, c, d string) {
+    tag = t
+    commit = c
+    date = d
+}
+
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
