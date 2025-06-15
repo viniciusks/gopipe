@@ -1,4 +1,4 @@
-.PHONY: build test lint
+.PHONY: build test lint clean
 
 # Variáveis de ambiente
 VERSION := $(shell git describe --tags --always --dirty)
