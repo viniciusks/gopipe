@@ -1,7 +1,7 @@
 # GoPipe पाइप
 
 <p align="center">
-    <img src="./assets/img/gopipe-logo.png" alt="GoPipe Logo" width="200"/>
+    <img src="/assets/img/gopipe-logo.png" alt="GoPipe Logo" width="200"/>
 </p>
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
