@@ -1,6 +1,6 @@
 # GoPipe पाइप
 
-![Logo do Projeto](assets/img/gopipe-logo.png)
+![Logo do Projeto](https://github.com/viniciusks/gopipe/blob/6f9ae148729bb1d03b9bc54a13aef9e8e3d47a03/assets/img/gopipe_logo.png)
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/viniciusks/gopipe)](https://golang.org) <!-- Substitua 'viniciusks/gopipe' pelo seu usuário/repo -->
