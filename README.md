@@ -1,5 +1,7 @@
 # GoPipe पाइप
 
+![Logo do Projeto](https://github.com/viniciusks/gopipe/blob/6f9ae148729bb1d03b9bc54a13aef9e8e3d47a03/assets/img/gopipe_logo.png)
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/viniciusks/gopipe)](https://golang.org) <!-- Substitua 'viniciusks/gopipe' pelo seu usuário/repo -->
 [![Build Status](https://img.shields.io/github/actions/workflow/status/viniciusks/gopipe/go.yml?branch=main)](https://github.com/viniciusks/gopipe/actions) <!-- Substitua 'viniciusks/gopipe' e ajuste o nome do workflow se necessário -->
@@ -34,7 +36,7 @@ No mundo DevOps e de Engenharia de Plataforma, a automação de processos de Int
 ```bash
 git clone https://github.com/viniciusks/gopipe.git # Substitua pelo seu usuário/repo
 cd gopipe
-go build .
+make build
 # Opcionalmente, instale globalmente (adicione GOPATH/bin ao seu PATH):
 # go install .
 ```
