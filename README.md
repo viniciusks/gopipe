@@ -26,7 +26,7 @@ No mundo DevOps e de Engenharia de Plataforma, a automação de processos de Int
 
 ### Pré-requisitos
 
-- [Go](https://golang.org/doc/install) (versão X.Y.Z ou superior - verifique o `go.mod`)
+- [Go](https://golang.org/doc/install) (versão 1.23.4 ou superior - verifique o `go.mod`)
 - Acesso às tecnologias de pipeline que você pretende utilizar (ex: um servidor Jenkins, cluster Kubernetes com Tekton, etc.)
 
 ### Instalação

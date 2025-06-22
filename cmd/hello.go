@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +13,7 @@ var helloCmd = &cobra.Command{
 		if name == "" {
 			name = "World"
 		}
-		fmt.Printf("Hello, %s!\n", name)
+		cmd.Printf("Hello, %s!\n", name)
 	},
 }
 
