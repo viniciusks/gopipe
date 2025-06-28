@@ -2,6 +2,7 @@ package run
 
 import (
 	"os"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
@@ -48,6 +49,36 @@ func identifyTechnology(cmd *cobra.Command, projectName string) string {
 	return "unknown"
 }
 
+func buildProject(cmd *cobra.Command, projectName string, technology string) {
+	// This function can be used to build the project based on the identified technology
+	// For example, you can run specific commands for each technology to build the project
+	cmd.Println("Building project:", projectName)
+	switch technology {
+	case "go":
+		cmd.Println("Running 'go build' for Go project")
+		// Here you can implement the logic to build a Go project
+	case "python":
+		cmd.Println("Running 'python setup.py install' for Python project")
+		// Here you can implement the logic to build a Python project
+	case "nodejs":
+		cmd.Println("Running 'npm install' for Node.js project")
+		// Here you can implement the logic to build a Node.js project
+	case "javaMaven":
+		cmd.Println("Running 'mvn clean install' for Java Maven project")
+		mvnCmd := exec.Command("mvn", "clean", "install")
+		mvnCmd.Dir = "/tmp/gopipe/" + projectName // Set the working directory to the project directory
+		mvnResult, err := mvnCmd.CombinedOutput()
+		if err != nil {
+			cmd.Println("Error building Java Maven project:", err)
+			cmd.Println("Output:", string(mvnResult))
+			return
+		}
+		cmd.Println("Java Maven project built successfully:", string(mvnResult))
+	default:
+		cmd.Println("Unknown technology, cannot build the project")
+	}
+}
+
 var buildCmd = &cobra.Command {
 	Use:  "build",
 	Short: "Builds a project",
@@ -85,6 +116,8 @@ var buildCmd = &cobra.Command {
 		technology := identifyTechnology(cmd, projectName)
 
 		cmd.Printf("Building project '%s' using technology '%s'\n", projectName, technology)
+
+		buildProject(cmd, projectName, technology)
 
 		cmd.Println("Build process completed successfully!")
 		cmd.Println("You can now deploy the project or run it locally.")
