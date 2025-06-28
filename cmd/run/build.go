@@ -78,7 +78,7 @@ func buildProject(cmd *cobra.Command, projectName string, technology string) {
 }
 
 func checkoutProject(cmd *cobra.Command, cloneUrl string, branch string) {
-	// This function can be used to checkout a project from a repository
+	// This function can be used to check out a project from a repository
 	// For example, you can use git commands to clone or checkout a specific branch
 	cmd.Println("Checking out the project...")
 	cmd.Println("Clone URL:", cloneUrl)
