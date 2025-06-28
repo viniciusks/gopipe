@@ -7,14 +7,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func checkoutProject(cmd *cobra.Command, cloneUrl string, branch string) {
-	// This function can be used to checkout a project from a repository
-	// For example, you can use git commands to clone or checkout a specific branch
-	cmd.Println("Checking out the project...")
-	cmd.Println("Clone URL:", cloneUrl)
-	cmd.Println("Branch:", branch)
-}
-
 func identifyTechnology(cmd *cobra.Command, projectName string) string {
 	// This function can be used to identify the technology used in the project
 	// For example, you can check for specific files or configurations that indicate the technology
@@ -49,6 +41,21 @@ func identifyTechnology(cmd *cobra.Command, projectName string) string {
 	return "unknown"
 }
 
+func buildJavaMavenProject(cmd *cobra.Command, projectName string) {
+	// This function builds a Java Maven project
+	// It assumes that the project has a pom.xml file in the root directory
+	cmd.Println("Running 'mvn clean install' for Java Maven project")
+	mvnCmd := exec.Command("mvn", "clean", "install")
+	mvnCmd.Dir = "/tmp/gopipe/" + projectName // Set the working directory to the project directory
+	mvnResult, err := mvnCmd.CombinedOutput()
+	if err != nil {
+		cmd.Println("Error building Java Maven project:", err)
+		cmd.Println("Output:", string(mvnResult))
+		return
+	}
+	cmd.Println("Java Maven project built successfully:", string(mvnResult))
+}
+
 func buildProject(cmd *cobra.Command, projectName string, technology string) {
 	// This function can be used to build the project based on the identified technology
 	// For example, you can run specific commands for each technology to build the project
@@ -64,29 +71,27 @@ func buildProject(cmd *cobra.Command, projectName string, technology string) {
 		cmd.Println("Running 'npm install' for Node.js project")
 		// Here you can implement the logic to build a Node.js project
 	case "javaMaven":
-		cmd.Println("Running 'mvn clean install' for Java Maven project")
-		mvnCmd := exec.Command("mvn", "clean", "install")
-		mvnCmd.Dir = "/tmp/gopipe/" + projectName // Set the working directory to the project directory
-		mvnResult, err := mvnCmd.CombinedOutput()
-		if err != nil {
-			cmd.Println("Error building Java Maven project:", err)
-			cmd.Println("Output:", string(mvnResult))
-			return
-		}
-		cmd.Println("Java Maven project built successfully:", string(mvnResult))
+		buildJavaMavenProject(cmd, projectName)
 	default:
 		cmd.Println("Unknown technology, cannot build the project")
 	}
 }
 
-var buildCmd = &cobra.Command {
-	Use:  "build",
+func checkoutProject(cmd *cobra.Command, cloneUrl string, branch string) {
+	// This function can be used to checkout a project from a repository
+	// For example, you can use git commands to clone or checkout a specific branch
+	cmd.Println("Checking out the project...")
+	cmd.Println("Clone URL:", cloneUrl)
+	cmd.Println("Branch:", branch)
+}
+
+var buildCmd = &cobra.Command{
+	Use:   "build",
 	Short: "Builds a project",
 	Long:  "This command builds a project defined in the configuration file. It compiles the source code, runs tests, and prepares the project for deployment.",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Here you can implement the logic to build a project
 		// For example, read a configuration file and execute the build steps defined in it
-		// technology, _ := cmd.Flags().GetString("technology")
 		checkout, _ := cmd.Flags().GetBool("checkout")
 		cloneUrl, _ := cmd.Flags().GetString("cloneUrl")
 		branch, _ := cmd.Flags().GetString("branch")
@@ -126,7 +131,7 @@ var buildCmd = &cobra.Command {
 }
 
 func init() {
-	// buildCmd.Flags().StringP("technology", "t", "", "Specify the technology to use for building the project (e.g., 'go', 'python', 'nodejs')")
+	// Initialize the build command
 	buildCmd.Flags().BoolP("checkout", "C", false, "Checkout the project before building")
 	buildCmd.Flags().StringP("cloneUrl", "c", "", "Determine the repository URL to clone the project from")
 	buildCmd.Flags().StringP("branch", "b", "", "Specify the branch to build from")
