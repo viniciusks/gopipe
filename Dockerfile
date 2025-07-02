@@ -1,8 +1,5 @@
-# Etapa de build
 FROM ubuntu:22.04 AS builder
 WORKDIR /builder
-
-ENV PATH="/usr/local/go/bin:${PATH}"
 
 COPY . .
 
@@ -13,11 +10,12 @@ RUN apt-get update -q && \
         build-essential \
         git \
         default-jre \
-        maven \
-        golang-go && \
-    tar -C /usr/local -xzf /go1.23.4.linux-amd64.tar.gz && \
-    make clean && \
-    make build && \
-    rm -rf /var/lib/apt/lists/*
+        maven && \
+    tar -C /usr/local -xzf /go1.23.4.linux-amd64.tar.gz
+
+ENV PATH="/usr/local/go/bin:${PATH}"
+
+RUN make clean && \
+    make build
 
 #FROM cgr.dev/chainguard/go:latest

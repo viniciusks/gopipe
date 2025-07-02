@@ -5,12 +5,12 @@ import (
 )
 
 var (
-    tag = "dev"
-    commit  = "none"
-    date    = "unknown"
+	tag    = "dev"
+	commit = "none"
+	date   = "unknown"
 )
 
 func main() {
 	cmd.SetVersionVars(tag, commit, date)
-    cmd.Execute()
+	cmd.Execute()
 }
