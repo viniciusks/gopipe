@@ -1,6 +1,8 @@
 package run
 
 import (
+	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
 
@@ -41,19 +43,31 @@ func identifyTechnology(cmd *cobra.Command, projectName string) string {
 	return "unknown"
 }
 
+// Função utilitária para rodar comandos externos
+func runCommand(dir, name string, args ...string) (string, error) {
+	var stdout, stderr bytes.Buffer
+	cmd := exec.Command(name, args...)
+	cmd.Dir = dir
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
+	outStr := stdout.String()
+	errStr := stderr.String()
+	if err != nil {
+		return outStr + errStr, fmt.Errorf("error: %w\nstderr: %s", err, errStr)
+	}
+	return outStr, nil
+}
+
 func buildJavaMavenProject(cmd *cobra.Command, projectName string) {
-	// This function builds a Java Maven project
-	// It assumes that the project has a pom.xml file in the root directory
 	cmd.Println("Running 'mvn clean install' for Java Maven project")
-	mvnCmd := exec.Command("mvn", "clean", "install")
-	mvnCmd.Dir = "/tmp/gopipe/" + projectName // Set the working directory to the project directory
-	mvnResult, err := mvnCmd.CombinedOutput()
+	output, err := runCommand("/tmp/gopipe/"+projectName, "mvn", "clean", "install")
 	if err != nil {
 		cmd.Println("Error building Java Maven project:", err)
-		cmd.Println("Output:", string(mvnResult))
+		cmd.Println("Output:", output)
 		return
 	}
-	cmd.Println("Java Maven project built successfully:", string(mvnResult))
+	cmd.Println("Java Maven project built successfully:\n", output)
 }
 
 func buildProject(cmd *cobra.Command, projectName string, technology string) {
